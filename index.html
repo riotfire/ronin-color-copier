@@ -1,0 +1,204 @@
+
+<!DOCTYPE html>
+<html lang="en" >
+
+<head>
+
+  <meta charset="UTF-8">
+
+<link rel="shortcut icon" type="image/x-icon" href="https://aux.iconspalace.com/uploads/colorwheel-circle-icon-256.png" />
+
+  <title>Ronin Colors Copier</title>
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+
+
+
+<style>
+@charset "UTF-8";
+html, body {
+  overflow: hidden;
+  background-color: #fafafa;
+  color:#686868;
+}
+
+.container {
+  display:grid;
+  grid-template-columns: repeat(auto-fill, max(250px));
+  gap:20px;
+  margin:100px auto;
+  max-width: 900px;
+}
+
+.coloroption {
+  padding: 50px 20px 10px;
+  position: relative;
+  top:0;
+  border-radius: 8px;
+  background-color: #fff;
+  box-shadow: 0 2px 5px rgba(0,0,0,.15);
+  border-width: 100px 0 0 0;
+  border-color:#fff;
+  border-style: solid;
+  transition: all .15s ease-in-out;
+  font-weight: bold;
+}
+
+.coloroption:hover {
+  top:-5px;
+  box-shadow: 0 7px 7px rgba(0,0,0,.1);
+  color:#444;
+  cursor: pointer;
+}
+
+.coloroption:hover:after {
+  content: "Click to copy";
+  font-size: 12px;
+  color: #aaa;
+  position: absolute;
+  bottom:10px;
+  right:10px;
+  display: block;
+  text-align: right;
+  font-weight:normal;
+}
+
+.coloroption span {
+  font-weight:normal;
+  display: block;
+}
+
+.colormain {
+  border-color: #315677;
+}
+
+.coloraccent {
+  border-color: #3392c0;
+}
+
+.colortext {
+  border-color: #636F76;
+}
+
+.colorbg {
+  border-color: #D8EAF4;
+}
+
+.coloralert {
+  border-color: #980000;
+}
+
+.colornotice {
+  border-color: #FFAB40;
+}
+
+.notice {
+  position: absolute;
+  top: 40px;
+  right: -250px;
+  border-radius: 10px;
+  background: white;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  padding: 10px 20px;
+  -webkit-animation: 2.25s 1 alternate slidein;
+          animation: 2.25s 1 alternate slidein;
+}
+
+@-webkit-keyframes slidein {
+  from {
+    right: -200px;
+  }
+  30% {
+    right: 35px;
+  }
+  50% {
+    right: 40px;
+  }
+  75% {
+    right: 40px;
+  }
+  to {
+    right: -400px;
+  }
+}
+
+@keyframes slidein {
+  from {
+    right: -200px;
+  }
+  30% {
+    right: 35px;
+  }
+  50% {
+    right: 40px;
+  }
+  75% {
+    right: 40px;
+  }
+  to {
+    right: -400px;
+  }
+}
+</style>
+
+
+
+
+
+
+</head>
+
+<body translate="no" >
+  <div class="container">
+	<div onClick="CopyToClipboard('colormain')" class="coloroption colormain">
+		Main Color:
+		<span id="colormain">#315677</span>
+	</div>
+
+	<div onClick="CopyToClipboard('coloraccent')" class="coloroption coloraccent">Accent Color:
+		<span id="coloraccent">#3392c0</span>
+	</div>
+
+	<div onClick="CopyToClipboard('colortext')" class="coloroption colortext">Text Color:
+		<span id="colortext">#636F76</span>
+	</div>
+
+	<div onClick="CopyToClipboard('colorbg')" class="coloroption colorbg">Background Color:
+		<span  id="colorbg" class="color">#D8EAF4</span>
+	</div>
+	<div onClick="CopyToClipboard('coloralert')" class="coloroption coloralert">Alert Color:
+		<span  id="coloralert" class="color">#980000</span>
+	</div>
+	<div onClick="CopyToClipboard('colornotice')" class="coloroption colornotice">Notice Color:
+		<span  id="colornotice" class="color">#FFAB40</span>
+	</div>
+
+	<div id="noticeholder"></div>
+</div>
+
+
+      <script id="rendered-js" >
+function CopyToClipboard(containerid) {
+	if (document.selection) {
+	    var range = document.body.createTextRange();
+	    range.moveToElementText(document.getElementById(containerid));
+	    range.select().createTextRange();
+	    document.execCommand("copy");
+      document.getElementById("noticeholder").innerHTML = '<div class="notice">Color copied to clipboard</div>';
+      document.selection.empty();
+
+	} else if (window.getSelection) {
+	    var range = document.createRange();
+	     range.selectNode(document.getElementById(containerid));
+	     window.getSelection().addRange(range);
+	     document.execCommand("copy");
+	     document.getElementById("noticeholder").innerHTML = '<div class="notice">Color copied to clipboard</div>';
+       window.getSelection().removeAllRanges()
+	}}
+    </script>
+
+
+
+</body>
+
+</html>
